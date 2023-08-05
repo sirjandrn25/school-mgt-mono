@@ -40,4 +40,6 @@ export type buttonProps = {
     shape?: keyof typeof buttonShape;
     children: any;
     glass?: boolean;
+    defaultWidth?: boolean;
+    loading?: boolean;
 };

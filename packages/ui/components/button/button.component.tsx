@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { cn } from "tailwind-config";
 import { EmptyFunction } from "../../utils/common.utils";
 import {
@@ -8,9 +8,15 @@ import {
     buttonShape,
     buttonSizes,
 } from "./button.types";
+import { useUpdateEffect } from "react-use";
 
-const Button = ({
+export const Button = ({
     onClick = EmptyFunction,
+
+    shape,
+    children,
+    defaultWidth,
+    loading: loadingProps,
     size = "md",
     appearance = "primary",
     fullWidth = false,
@@ -18,11 +24,13 @@ const Button = ({
     progress = false,
     outline = false,
     disabled = false,
-    shape = "square",
-    children,
-    glass = true,
-}: buttonProps) => {
+}: // glass = true,
+buttonProps) => {
     const [loading, setLoading] = useState<any>(false);
+
+    useUpdateEffect(() => {
+        setLoading(loadingProps);
+    }, [loadingProps]);
 
     const next = () => setLoading(false);
 
@@ -32,30 +40,38 @@ const Button = ({
         progress && setLoading(true);
         onClick(next, e);
     };
-    console.log(buttonSizes[size]);
+    const mapBtnShape = useMemo(() => {
+        switch (shape) {
+            case "square":
+                return buttonShape["square"];
+            case "circle":
+                return buttonShape["circle"];
+            default:
+                return;
+        }
+    }, [shape]);
     return (
         <button
             disabled={disabled}
             className={cn(
                 "btn",
                 buttonAppearance[appearance],
-                buttonShape[shape],
+                mapBtnShape,
                 buttonSizes[size],
                 "normal-case",
 
                 {
-                    loading: loading,
                     "w-full": fullWidth,
                     "btn-outline": outline,
-                    glass: glass,
+                    "min-w-[150px]": defaultWidth,
+                    "cursor-wait": loading,
                 },
                 className
             )}
             onClick={handleClick}
         >
+            {loading && <span className="loading loading-spinner"></span>}
             {children}
         </button>
     );
 };
-
-export default Button;

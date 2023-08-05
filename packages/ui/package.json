@@ -8,18 +8,20 @@
     "lint": "eslint \"**/*.ts*\"",
     "generate:component": "turbo gen react-component"
   },
-
   "devDependencies": {
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
     "react": "^17.0.2",
+    "tailwind-config": "*",
     "tsconfig": "*",
-    "typescript": "^4.5.2",
-    "tailwind-config":"*"
+    "typescript": "^4.5.2"
   },
-  "files":[
+  "files": [
     "./index"
-  ]
+  ],
+  "dependencies": {
+    "react-use": "^17.4.0"
+  }
 }

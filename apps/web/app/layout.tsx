@@ -1,10 +1,13 @@
 import React from "react";
+import "../Styles/global.css";
 
 const RootLayout = ({ children }: any) => {
     return (
         <html lang="en">
-            <header className={"School Management"}></header>
-            <main>{children}</main>
+            <body>
+                <header className={"School Management"}></header>
+                <main>{children}</main>
+            </body>
         </html>
     );
 };

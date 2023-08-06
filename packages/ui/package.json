@@ -23,6 +23,7 @@
   ],
   "dependencies": {
     "lucide-react": "^0.263.1",
+    "react-dropzone": "^14.2.3",
     "react-use": "^17.4.0"
   }
 }

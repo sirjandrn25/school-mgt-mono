@@ -1,11 +1,21 @@
 "use client";
+import { User2, UserCircle2 } from "lucide-react";
 import React from "react";
-import { Button, InputField } from "ui";
+import { Button, InputField, TextareaInput } from "ui";
 
 const Home = () => {
     return (
-        <div className="p-10">
-            <InputField label="Username" placeholder="Enter User Name" />
+        <div className="flex flex-col gap-4 p-10">
+            <InputField
+                prefix={<User2 size={18} />}
+                label="Username"
+                placeholder="Enter User Name"
+                suffix={<UserCircle2 />}
+            />
+            <TextareaInput
+                label="Description"
+                placeholder="Enter Description"
+            />
             <Button
                 onClick={(next) => {
                     console.log("cursor");

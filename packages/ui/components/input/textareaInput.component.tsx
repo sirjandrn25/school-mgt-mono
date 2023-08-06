@@ -51,7 +51,7 @@ export const TextareaInput = ({
                 {...rest}
                 disabled={!!disabled}
                 className={cn(
-                    `textarea px-3 textarea-bordered  `,
+                    `textarea px-3 textarea-bordered focus:border-2 focus:outline-none focus:border-info  `,
                     inputClassName
                 )}
             >

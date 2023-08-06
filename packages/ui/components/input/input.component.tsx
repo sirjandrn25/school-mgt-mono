@@ -15,7 +15,7 @@ export const InputField = ({
     onBlur,
     onChange,
     label = "",
-    value: valueProps,
+    value: valueProps = "",
     defaultValue = "",
 
     type = "text",
@@ -61,7 +61,7 @@ export const InputField = ({
             "focus:border-2",
             {
                 error: "input-error",
-                "focus:border-info  focus:shadow-md rounded-[4px]": !error,
+                "focus:border-info ": !error,
             },
             inputClassName
         );

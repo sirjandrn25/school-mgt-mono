@@ -1,29 +1,31 @@
 {
-  "name": "ui",
-  "version": "0.0.0",
-  "main": "./index.tsx",
-  "types": "./index.tsx",
-  "license": "MIT",
-  "scripts": {
-    "lint": "eslint \"**/*.ts*\"",
-    "generate:component": "turbo gen react-component"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "eslint": "^7.32.0",
-    "eslint-config-custom": "*",
-    "react": "^17.0.2",
-    "tailwind-config": "*",
-    "tsconfig": "*",
-    "typescript": "^4.5.2"
-  },
-  "files": [
-    "./index"
-  ],
-  "dependencies": {
-    "lucide-react": "^0.263.1",
-    "react-dropzone": "^14.2.3",
-    "react-use": "^17.4.0"
-  }
+    "name": "ui",
+    "version": "0.0.0",
+    "main": "./index.tsx",
+    "types": "./index.tsx",
+    "license": "MIT",
+    "scripts": {
+        "lint": "eslint \"**/*.ts*\"",
+        "generate:component": "turbo gen react-component"
+    },
+    "devDependencies": {
+        "@types/react": "^18.2.0",
+        "@types/react-dom": "^18.2.0",
+        "eslint": "^7.32.0",
+        "eslint-config-custom": "*",
+        "react": "^17.0.2",
+        "tailwind-config": "*",
+        "utils": "*",
+        "tsconfig": "*",
+        "typescript": "^4.5.2"
+    },
+    "files": [
+        "./index"
+    ],
+    "dependencies": {
+        "@radix-ui/react-select": "^1.2.2",
+        "lucide-react": "^0.263.1",
+        "react-dropzone": "^14.2.3",
+        "react-use": "^17.4.0"
+    }
 }

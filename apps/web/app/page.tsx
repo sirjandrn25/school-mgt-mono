@@ -18,6 +18,7 @@ const Home = () => {
             />
             <SelectBox
                 label="Select Option"
+                isClearable
                 options={[
                     {
                         label: "First Option",

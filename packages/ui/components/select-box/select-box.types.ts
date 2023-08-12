@@ -38,4 +38,5 @@ export interface SelectBoxInterface {
     value?: string;
     defaultValue?: string;
     valueClassName?: string;
+    isClearable?: boolean;
 }

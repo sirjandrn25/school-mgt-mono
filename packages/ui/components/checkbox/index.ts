@@ -1,2 +1,2 @@
-export * from "./checkBox.component";
-export * from "./checkBox.types";
+export * from "./checkbox.component";
+export * from "./checkbox.types";

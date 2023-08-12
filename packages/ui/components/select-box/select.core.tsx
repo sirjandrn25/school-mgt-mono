@@ -12,18 +12,25 @@ const SelectGroup = SelectPrimitive.Group;
 
 const SelectValue = SelectPrimitive.Value;
 
-const SelectTrigger = React.forwardRef<
-    React.ElementRef<typeof SelectPrimitive.Trigger>,
-    React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
->(
+type TriggerType = Omit<typeof SelectPrimitive.Trigger, "ref">;
+
+type SelectTriggerTypeProps = TriggerType & {
+    is_clearable?: boolean;
+    onClear?: () => void;
+    children: any;
+    className?: string;
+};
+
+const SelectTrigger = React.forwardRef(
     (
         {
             className,
             children,
-
+            is_clearable,
+            onClear = EmptyFunction,
             ...props
-        },
-        ref
+        }: SelectTriggerTypeProps,
+        ref: any
     ) => (
         <SelectPrimitive.Trigger
             ref={ref}
@@ -35,7 +42,19 @@ const SelectTrigger = React.forwardRef<
         >
             {children}
             <SelectPrimitive.Icon asChild>
-                <ChevronDown className="w-4 h-4 opacity-50" />
+                <div className="flex flex-row items-center gap-2">
+                    {is_clearable && (
+                        <X
+                            className="text-error hover:border hover:border-error"
+                            size={18}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onClear();
+                            }}
+                        />
+                    )}
+                    <ChevronDown className="w-4 h-4 opacity-50" />
+                </div>
             </SelectPrimitive.Icon>
         </SelectPrimitive.Trigger>
     )

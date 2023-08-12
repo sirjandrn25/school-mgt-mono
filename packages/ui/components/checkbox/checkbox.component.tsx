@@ -5,16 +5,17 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { cn } from "tailwind-config";
-import {
-    CheckBoxInterface,
-    CheckboxAppearance,
-    CheckboxSizes,
-} from "./checkBox.types";
+
 import {
     EmptyFunction,
     IsFunction,
     IsUndefined,
 } from "../../utils/common.utils";
+import {
+    CheckBoxInterface,
+    CheckboxSizes,
+    CheckboxAppearance,
+} from "./checkbox.types";
 
 /**
  * Represents a CheckBox component.

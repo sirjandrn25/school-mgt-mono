@@ -15,7 +15,7 @@
         "eslint-config-custom": "*",
         "react": "^17.0.2",
         "tailwind-config": "*",
-        "utils": "*",
+        "helper-utils": "*",
         "tsconfig": "*",
         "typescript": "^4.5.2"
     },

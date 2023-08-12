@@ -5,6 +5,7 @@ import { Debounce } from "../../utils/common.utils";
 import ErrorMessage from "./error.message.component";
 import { TextareaInputInterface } from "./input.types";
 import Label from "./label.component";
+import "../../style.css";
 
 export const TextareaInput = ({
     onBlur,
@@ -43,7 +44,7 @@ export const TextareaInput = ({
         }
     };
     return (
-        <div className={`flex flex-col gap-1  ${className}`}>
+        <div className={`form-control  ${className}`}>
             {label && <Label {...{ error, required, label }} />}
             <textarea
                 placeholder={placeholder}
@@ -54,9 +55,8 @@ export const TextareaInput = ({
                     `textarea px-3 textarea-bordered focus:border-2 focus:outline-none focus:border-info  `,
                     inputClassName
                 )}
-            >
-                {value}
-            </textarea>
+                value={value}
+            ></textarea>
             {!error && messageComponent}
             {error && <ErrorMessage {...{ error }} />}
         </div>

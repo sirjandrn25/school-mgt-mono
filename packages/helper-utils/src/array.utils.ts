@@ -1,6 +1,7 @@
+import { CoreUtils } from "./core.utils";
 import { ObjectUtils } from "./object.utils";
 
-export class ArrayUtils {
+export class ArrayUtils extends CoreUtils {
     static getObject(arr: Object[], key: string, value: string | number) {
         if (!ArrayUtils.isArray(arr)) return;
         for (let el of arr) {

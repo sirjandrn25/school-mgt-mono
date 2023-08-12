@@ -6,6 +6,7 @@ import { Debounce } from "../../utils/common.utils";
 import ErrorMessage from "./error.message.component";
 import { InputInterface } from "./input.types";
 import Label from "./label.component";
+import "../../style.css";
 
 export type InputFieldType = InputInterface & {
     type?: "text" | "number" | "email" | "password";
@@ -67,7 +68,7 @@ export const InputField = ({
         );
     }, [error, inputClassName]);
     return (
-        <div className={`flex flex-col gap-1  ${className}`}>
+        <div className={`form-control  ${className}`}>
             {label && <Label {...{ error, required, label }} />}
 
             <InputComponent
@@ -106,7 +107,7 @@ const InputComponent = ({
                 value={inputValue}
                 type={type}
                 placeholder={placeholder}
-                className={`input px-3  focus:outline-none h-[38px] text-sm   input-bordered   w-full  ${inputClassName} ${
+                className={`input px-3  focus:outline-none h-10 text-sm   input-bordered   w-full  ${inputClassName} ${
                     prefix && "pl-8"
                 } ${suffix && "pr-8"}`}
                 onChange={handleChange}

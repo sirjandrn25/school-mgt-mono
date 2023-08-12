@@ -1,7 +1,7 @@
 import { ArrayUtils } from "./array.utils";
 import { CoreUtils } from "./core.utils";
 
-export class ObjectUtils {
+export class ObjectUtils extends CoreUtils {
     static isEmpty(obj: any) {
         if (typeof obj === "object") {
             return !!Object.values(obj).length;

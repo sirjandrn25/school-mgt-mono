@@ -37,4 +37,5 @@ export interface SelectBoxInterface {
     placeholder?: string;
     value?: string;
     defaultValue?: string;
+    valueClassName?: string;
 }

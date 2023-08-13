@@ -10,7 +10,7 @@ import {
 import { SelectBoxInterface } from "./select-box.types";
 import Label from "../input/label.component";
 import ErrorMessage from "../input/error.message.component";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { ArrayUtils } from "helper-utils";
 import { EmptyFunction } from "../../utils/common.utils";
 import { useUpdateEffect } from "react-use";
@@ -28,7 +28,8 @@ export const SelectBox = ({
     valueClassName = "",
     isClearable,
 }: SelectBoxInterface) => {
-    const [value, setValue] = useState<string>(defaultValue);
+    const [value, setValue] = useState<string | undefined>(defaultValue);
+    const valueRef = useRef<any>(null);
 
     useUpdateEffect(() => {
         setValue(valueProps);
@@ -40,9 +41,10 @@ export const SelectBox = ({
     };
     const isClearableProp = useMemo(() => {
         if (!isClearable) return false;
-        console.log(value);
+
         return !!value;
-    }, []);
+    }, [value, isClearable]);
+
     return (
         <div className="form-control">
             <Label {...{ label, required, error }} />
@@ -54,8 +56,12 @@ export const SelectBox = ({
                 defaultValue={defaultValue}
             >
                 <SelectTrigger
+                    ref={valueRef}
                     is_clearable={isClearableProp}
                     className={valueClassName}
+                    onClear={() => {
+                        console.log("click");
+                    }}
                 >
                     <SelectValue
                         defaultValue={String(defaultValue ?? value)}

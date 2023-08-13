@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { Check, ChevronDown, X } from "lucide-react";
+import * as React from "react";
 import { cn } from "tailwind-config";
 import { EmptyFunction } from "../../utils/common.utils";
 
@@ -12,9 +12,9 @@ const SelectGroup = SelectPrimitive.Group;
 
 const SelectValue = SelectPrimitive.Value;
 
-type TriggerType = Omit<typeof SelectPrimitive.Trigger, "ref">;
+// type TriggerType = Omit<typeof SelectPrimitive.Trigger, "ref">;
 
-type SelectTriggerTypeProps = TriggerType & {
+type SelectTriggerTypeProps = {
     is_clearable?: boolean;
     onClear?: () => void;
     children: any;
@@ -139,12 +139,12 @@ const SelectSeparator = React.forwardRef<
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
 
 export {
-    SelectRoot,
-    SelectGroup,
-    SelectValue,
-    SelectTrigger,
     SelectContent,
-    SelectLabel,
+    SelectGroup,
     SelectItem,
+    SelectLabel,
+    SelectRoot,
     SelectSeparator,
+    SelectTrigger,
+    SelectValue,
 };

@@ -1,12 +1,20 @@
 import type { Request, Response } from "express";
+import { ObjectUtils } from "helper-utils";
+import { WithUserRequestType } from "../../types/server.types";
 import { userType } from "../../types/user.types";
 import { HashingUtils } from "../../utils/hashing.utils";
 import JwtTokenUtils from "../../utils/jwtToken.utils";
 import AuthService from "./auth.service";
 
 export default class AuthController {
-    static async me(req: Request, res: Response) {
-        // create user profile
+    static async loggedUserDetail(req: WithUserRequestType, res: Response) {
+        const user = req.user;
+
+        if (!user) return res.status(403).send("Not logged in");
+        const result = await AuthService.getByEmail(user?.email);
+        return res
+            .status(200)
+            .send(ObjectUtils.removeNode(result as any, "password"));
     }
     static async login(req: Request, res: Response) {
         try {
@@ -47,9 +55,6 @@ export default class AuthController {
         } catch (error) {
             res.status(500).send("Error");
         }
-
-        //match password with hash password
-        //generate refresh and access token with expiration time
     }
 
     static async register(req: Request, res: Response) {

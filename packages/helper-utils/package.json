@@ -5,5 +5,8 @@
     "main": "./index.ts",
     "files": [
         "src/"
-    ]
+    ],
+    "devDependencies": {
+        "core": "*"
+    }
 }

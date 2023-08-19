@@ -1,22 +1,23 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["fullTextSearch", "jsonProtocol"]
+}
+
 datasource db {
-    provider = "postgresql"
+    provider = "cockroachdb"
     url      = env("DATABASE_URL")
 }
 
-generator client {
-    provider = "prisma-client-js"
+model User {
+    id         String    @id @default(cuid())
+    email      String    @unique
+    name       String
+    role       Role      @default(USER)
+    created_at DateTime? @default(now())
+    password   String
 }
 
 enum Role {
     USER
     ADMIN
-}
-
-model User {
-    id         Int       @id @default(autoincrement())
-    createdAt  DateTime  @default(now())
-    email      String    @unique
-    name       String?
-    role       Role      @default(USER)
-    created_at DateTime? @default(now())
 }

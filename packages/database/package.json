@@ -5,7 +5,8 @@
     "main": "./index.ts",
     "types": "./index.ts",
     "dependencies": {
-        "@prisma/client": "latest"
+        "@prisma/client": "latest",
+        "cuid": "^3.0.0"
     },
     "devDependencies": {
         "prisma": "latest"

@@ -6,13 +6,13 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 dotenv.config();
 
-const white_list = ["localhost:3000"];
+const white_list = ["http://localhost:3000"];
 const cor_options = {
     origin: (origin: string, callback: any = () => {}) => {
         if (white_list.includes(origin) || !origin) {
             callback(null, true);
         } else {
-            callback(new Error("Not Allowed by cors"));
+            // callback(new Error("Not Allowed by cors"));
         }
     },
 };

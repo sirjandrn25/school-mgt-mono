@@ -4,7 +4,7 @@
     "private": true,
     "main": "index.ts",
     "scripts": {
-        "dev": "nodemon index.ts"
+        "dev": "nodemon index.ts  "
     },
     "dependencies": {
         "bcrypt": "^5.1.1",

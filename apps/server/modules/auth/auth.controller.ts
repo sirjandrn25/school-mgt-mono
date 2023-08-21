@@ -53,6 +53,7 @@ export default class AuthController {
                 refresh_token,
             });
         } catch (error) {
+            console.log({ error });
             res.status(500).send("Error");
         }
     }

@@ -3,6 +3,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useEffect, useMemo } from "react";
 import { Loading } from "ui";
 import { useAuthContext } from "../../src/context/auth.context";
+import DashboardWrapper from "@components/dashboardWrapper.component";
 
 const Layout = ({ children }: { children: ReactNode }) => {
     const { isLoggedIn, isLoading } = useAuthContext();
@@ -24,7 +25,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
     if (pathname.includes("/dashboard") && !isLoggedIn && !isLoading) {
         return <></>;
     }
-    return <div>{children}</div>;
+    return <DashboardWrapper>{children}</DashboardWrapper>;
 };
 
 export default Layout;

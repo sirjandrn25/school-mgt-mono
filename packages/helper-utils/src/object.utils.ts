@@ -1,5 +1,6 @@
 import { ArrayUtils } from "./array.utils";
 import { CoreUtils } from "./core.utils";
+import { DictionaryType } from "core";
 
 export class ObjectUtils extends CoreUtils {
     static isEmpty(obj: any) {
@@ -31,4 +32,10 @@ export class ObjectUtils extends CoreUtils {
 
         return pointer[lastKey];
     };
+
+    static removeNode(Obj: DictionaryType, key: string) {
+        const newData = { ...Obj };
+        delete newData[key];
+        return newData;
+    }
 }

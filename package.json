@@ -1,25 +1,28 @@
 {
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "dev:web":"turbo run dev --filter=web...",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
-  },
-  "devDependencies": {
-    "@turbo/gen": "^1.9.7",
-    "eslint": "^7.32.0",
-    "eslint-config-custom": "*",
-    "postcss": "^8.4.27",
-    "prettier": "^2.5.1",
-    "tailwindcss": "^3.3.3",
-    "turbo": "latest"
-  },
-  "name": "school-mgt-mono",
-  "packageManager": "yarn@1.22.19",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+    "private": true,
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "dev:web": "turbo run dev --filter=web...",
+        "dev:server": "turbo run dev --filter=server...",
+        "lint": "turbo run lint",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "db:generate": "prisma generate",
+        "db:push": "prisma db push --skip-generate"
+    },
+    "devDependencies": {
+        "@turbo/gen": "^1.9.7",
+        "eslint": "^7.32.0",
+        "eslint-config-custom": "*",
+        "postcss": "^8.4.27",
+        "prettier": "^2.5.1",
+        "tailwindcss": "^3.3.3",
+        "turbo": "latest"
+    },
+    "name": "school-mgt-mono",
+    "packageManager": "yarn@1.22.19",
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ]
 }

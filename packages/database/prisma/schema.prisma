@@ -1,0 +1,59 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["fullTextSearch", "jsonProtocol"]
+}
+
+datasource db {
+    provider = "cockroachdb"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id         String    @id @default(cuid())
+    email      String    @unique
+    name       String
+    role       Role      @default(USER)
+    created_at DateTime? @default(now())
+    password   String
+}
+
+enum Role {
+    USER
+    ADMIN
+}
+
+enum Gender {
+    M // male
+    F // female
+}
+
+model Course {
+    id           String         @id @default(cuid())
+    name         String
+    description  String?
+    created_at   DateTime?      @default(now())
+    registration Registration[]
+}
+
+model Student {
+    id           String         @id @default(cuid())
+    full_name    String
+    birth_date   DateTime
+    gender       Gender         @default(M)
+    mother_name  String?
+    father_name  String?
+    photo        String?
+    registration Registration[]
+}
+
+model Registration {
+    id              String    @id @default(cuid())
+    register_number String    @unique
+    student_id      String
+    student         Student   @relation(fields: [student_id], onDelete: Cascade, references: [id])
+    course_id       String
+    course          Course    @relation(fields: [course_id], onDelete: Cascade, references: [id])
+    created_at      DateTime? @default(now())
+
+    @@unique([course_id, student_id])
+}

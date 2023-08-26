@@ -1,0 +1,18 @@
+{
+    "name": "database",
+    "version": "1.0.0",
+    "private": true,
+    "main": "./index.ts",
+    "types": "./index.ts",
+    "dependencies": {
+        "@prisma/client": "latest",
+        "cuid": "^3.0.0"
+    },
+    "devDependencies": {
+        "prisma": "latest"
+    },
+    "scripts": {
+        "db:generate": "prisma generate",
+        "db:push": "prisma db push --skip-generate"
+    }
+}

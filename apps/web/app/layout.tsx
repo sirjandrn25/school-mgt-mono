@@ -1,14 +1,17 @@
-import React from "react";
+"use client";
 import "../Styles/global.css";
+import { AuthProvider } from "../src/context/auth.context";
 
 const RootLayout = ({ children }: any) => {
     return (
-        <html lang="en">
-            <body>
-                <header className={"School Management"}></header>
-                <main>{children}</main>
-            </body>
-        </html>
+        <AuthProvider>
+            <html lang="en">
+                <body>
+                    <header className={"School Management"}></header>
+                    <main>{children}</main>
+                </body>
+            </html>
+        </AuthProvider>
     );
 };
 

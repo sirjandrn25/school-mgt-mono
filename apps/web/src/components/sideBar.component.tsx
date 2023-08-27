@@ -13,13 +13,14 @@ const routes = [
         name: "Student",
         route: `${dashboard_route}/student`,
     },
-    {
-        name: "Category",
-        route: `${dashboard_route}/category`,
-    },
+
     {
         name: "Courses",
         route: `${dashboard_route}/courses`,
+    },
+    {
+        name: "Grades",
+        route: `${dashboard_route}/grades`,
     },
 ];
 

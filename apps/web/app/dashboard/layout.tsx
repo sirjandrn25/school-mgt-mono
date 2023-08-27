@@ -11,6 +11,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
     const pathname = usePathname();
 
     const isPublicRoute = useMemo(() => !pathname.includes("/dashboard"), []);
+
     useEffect(() => {
         if (isLoading) return;
         if (!isPublicRoute && !isLoggedIn) return router.push("/login");

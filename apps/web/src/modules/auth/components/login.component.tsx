@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import { Button, InputField } from "ui";
-import ApiService from "../../utils/api.service.utils";
+import ApiService from "../../../utils/api.service.utils";
 import { DictionaryType } from "core";
 import { EmptyFunction } from "ui/utils/common.utils";
-import { AuthStorageUtils } from "../../utils/storage.utils";
-import { useAuthContext } from "../../context/auth.context";
+import { AuthStorageUtils } from "../../../utils/storage.utils";
+import { useAuthContext } from "../../../context/auth.context";
 import { useRouter } from "next/navigation";
 
 const Login = () => {

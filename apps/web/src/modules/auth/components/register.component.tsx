@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button, InputField } from "ui";
 import { EmptyFunction } from "ui/utils/common.utils";
-import ApiService from "../../utils/api.service.utils";
+import ApiService from "../../../utils/api.service.utils";
 
 const Register = () => {
     const [data, setData] = useState<DictionaryType>();

@@ -33,6 +33,19 @@ model Course {
     description  String?
     created_at   DateTime?      @default(now())
     registration Registration[]
+    grades       Grade[]
+}
+
+model Grade {
+    id          String    @id @default(cuid())
+    name        String
+    description String?
+    course_id   String
+    course      Course    @relation(fields: [course_id], onDelete: Cascade, references: [id])
+    priority    Int
+    created_at  DateTime? @default(now())
+
+    @@unique([course_id, name])
 }
 
 model Student {

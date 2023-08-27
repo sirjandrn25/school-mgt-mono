@@ -1,35 +1,19 @@
-import { DictionaryType } from "core";
-import { PrismaClient } from "database";
-const prisma = new PrismaClient();
+import BaseService from "../../services/base.service";
 
-export default class StudentService {
-    private db;
-    constructor() {
-        this.db = prisma.student;
-    }
-    async list() {
-        return await this.db.findMany({});
-    }
-    async getById(id: string) {
-        return await this.db.findUnique({
-            where: {
-                id: id,
-            },
-        });
-    }
-
-    async deleteById(id: string) {
-        return await this.db.delete({
-            where: {
-                id,
-            },
-        });
-    }
-
-    //@todo make student type
-    async create(data: any) {
+export default class StudentService extends BaseService {
+    async register(data: any) {
+        const { student, registration_data } = data || {};
         return await this.db.create({
-            data: data,
+            data: {
+                ...student,
+                registration: {
+                    create: registration_data,
+                },
+            },
+            include: {
+                registration: true,
+            },
         });
     }
+    async admission(data: any) {}
 }

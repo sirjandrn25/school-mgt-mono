@@ -1,10 +1,10 @@
 import { Router } from "express";
+import GradeController from "./grade.controller";
 const router = Router();
-import StudentController from "./student.controller";
-const controller = new StudentController();
+const controller = new GradeController();
 
 router.get("", controller.list);
-router.post("/register", controller.registration);
+router.post("", controller.create);
 // router.get("/:id", controller.getById);
 // router.get("", controller.create);
 // router.get("/:id", controller.deleteById);

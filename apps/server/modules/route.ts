@@ -1,8 +1,11 @@
-import { verifyUser } from "../middleware/auth.middleware";
-import authRouter from "./auth/auth.route";
-import studentRouter from "./student/student.route";
 import { Router } from "express";
+import authRouter from "./auth/auth.route";
+import courseRouter from "./course/course.route";
+import studentRouter from "./student/student.route";
+import gradeRouter from "./grade/grade.route";
 const router = Router();
 router.use("/auth", authRouter);
-router.use("/student", verifyUser, studentRouter);
+router.use("/students", studentRouter);
+router.use("/courses", courseRouter);
+router.use("/grades", gradeRouter);
 export default router;

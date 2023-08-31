@@ -1,3 +1,3 @@
-import AuthModule from "../../src/modules/auth.module";
+import AuthModule from "../../src/modules/auth/auth.module";
 
 export default AuthModule;

@@ -1,17 +1,9 @@
+import useQueryList from "@hooks/useQueryList.hook";
 import React from "react";
 import { TableInterface, Table } from "ui";
 
 const CourseListModule = () => {
-    const data = [
-        {
-            id: 1,
-            name: "See Course",
-        },
-        {
-            id: 2,
-            name: "+2 Course",
-        },
-    ];
+    const { data } = useQueryList({ end_point: "courses" });
     const table_props: TableInterface = {
         data,
         columns: [

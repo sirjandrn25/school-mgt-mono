@@ -20,7 +20,6 @@ const AuthModule = () => {
             body: JSON.stringify(data),
         });
         const response = await result.json();
-        console.log({ response });
     };
     return (
         <div className="flex items-center justify-center w-screen h-screen">

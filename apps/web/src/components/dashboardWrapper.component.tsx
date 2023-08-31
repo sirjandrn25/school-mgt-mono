@@ -3,7 +3,7 @@ import SideBar from "./sideBar.component";
 
 const DashboardWrapper = ({ children }) => {
     return (
-        <div className="flex w-screen h-screen bg-gray-100 ">
+        <div className="flex w-screen h-screen bg-gray-50 ">
             <SideBar className="w-[300px]" />
             <div className="flex-1">
                 <Header />

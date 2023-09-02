@@ -1,4 +1,5 @@
-import { request, response, type Request, type Response } from "express";
+import { Request, Response } from "express";
+import CustomError from "../utils/customError.utils";
 
 const errorHandler = (
     error: any,
@@ -17,6 +18,13 @@ const errorHandler = (
 export const asyncErrorHandler = (func: Function) => {
     return (req: Request, res: Response, next: Function) =>
         func(req, res, next).catch((error: any) => {
+            if (error?.code === "P2002") {
+                const target = error?.meta?.target[0];
+                return res.status(400).send({
+                    [target]: "unique constraint failed !!",
+                });
+            }
+
             next(error);
         });
 };

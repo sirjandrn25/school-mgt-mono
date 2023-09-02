@@ -2,7 +2,9 @@ import { PrismaClient } from "database";
 import { userType } from "../../types/user.types";
 import { HashingUtils } from "../../utils/hashing.utils";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+    errorFormat: "minimal",
+});
 
 export default class AuthService {
     static async getByEmail(email: string) {

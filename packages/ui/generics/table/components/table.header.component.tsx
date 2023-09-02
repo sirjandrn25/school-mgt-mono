@@ -2,12 +2,12 @@ import { cn } from "tailwind-config";
 
 const TableHeader = ({ enableNumbering, columns, rowActions }: any) => {
     return (
-        <thead className="p-4 ">
+        <thead className="p-3 bg-base-200 ">
             <tr>
                 {enableNumbering && (
                     <th
                         scope="col"
-                        className="w-10 px-6 py-4 font-medium border-b"
+                        className="w-10 px-6 py-3 font-medium border-b"
                     >
                         SNo.
                     </th>
@@ -18,7 +18,7 @@ const TableHeader = ({ enableNumbering, columns, rowActions }: any) => {
                         <th
                             scope="col"
                             className={cn(
-                                "px-6 py-4 uppercase text-sm border-b font-medium ",
+                                "px-6 py-3 uppercase text-sm border-b font-medium ",
                                 {
                                     "hover:cursor-pointer": column?.sort,
                                 }

@@ -137,7 +137,13 @@ export const Table = ({
             <table className="table w-full text-sm text-left text-gray-500 border-collapse">
                 <TableHeader {...{ enableNumbering, columns, rowActions }} />
                 <TableBody
-                    {...{ data: sortedData, rowActions, enableNumbering }}
+                    {...{
+                        data: sortedData,
+                        rowActions,
+                        enableNumbering,
+                        columns,
+                        filterState,
+                    }}
                 />
             </table>
             {!loading && !data.length && (

@@ -172,7 +172,7 @@ const Pagination = ({
     ]);
 
     return (
-        <div className="flex items-center justify-between gap-4 p-4">
+        <div className="flex items-center justify-between gap-4 p-4 bg-base-200">
             {renderLimit()}
             {renderPagination()}
         </div>

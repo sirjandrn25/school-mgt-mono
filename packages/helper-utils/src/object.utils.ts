@@ -14,8 +14,9 @@ export class ObjectUtils extends CoreUtils {
         return typeof obj === "object" && !ArrayUtils.isArray(obj);
     }
 
-    static accessNestedValue = (obj: any, key: string) => {
+    static accessNestedValue = (obj: any, key: string = "") => {
         if (!ObjectUtils.isObject(obj)) return;
+
         const keys = key.split(".");
 
         const lastKey = keys.pop();

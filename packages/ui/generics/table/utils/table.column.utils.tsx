@@ -7,7 +7,9 @@ export default class TableColumnUtils {
         if (FunctionUtils.IsFunction(column.renderValue)) {
             return (column as any)?.renderValue(data);
         }
+
         const value = ObjectUtils.accessNestedValue(data, column.key);
+
         switch (column.type) {
             case "date":
                 return value; // format date value

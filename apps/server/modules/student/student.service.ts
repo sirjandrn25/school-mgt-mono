@@ -15,5 +15,15 @@ export default class StudentService extends BaseService {
             },
         });
     }
-    async admission(data: any) {}
+    async list() {
+        return await this.db.findMany({
+            include: {
+                registration: {
+                    include: {
+                        course: true,
+                    },
+                },
+            },
+        });
+    }
 }

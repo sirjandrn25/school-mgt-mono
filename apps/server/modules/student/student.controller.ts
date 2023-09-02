@@ -33,9 +33,7 @@ export default class StudentController {
             const student = await service.register({
                 student: {
                     ...rest,
-                    birth_date: rest?.birth_date
-                        ? new Date(rest?.birth_date)
-                        : new Date(),
+                    birth_date: new Date(rest.birth_date),
                 },
                 registration_data: {
                     course_id,
@@ -44,7 +42,7 @@ export default class StudentController {
             });
             res.status(201).send(student);
         } catch (error) {
-            console.log({ error });
+            console.log(error);
             res.status(500).send(error);
         }
     }

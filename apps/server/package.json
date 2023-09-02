@@ -9,14 +9,15 @@
     "dependencies": {
         "bcrypt": "^5.1.1",
         "body-parser": "^1.20.2",
+        "core": "*",
         "cors": "^2.8.5",
         "database": "*",
         "dotenv": "^16.3.1",
         "express": "^4.18.2",
+        "helper-utils": "*",
         "jsonwebtoken": "^9.0.1",
         "nodemon": "^3.0.1",
-        "core": "*",
-        "helper-utils": "*"
+        "zod": "^3.22.2"
     },
     "devDependencies": {
         "@types/express": "^4.17.17",

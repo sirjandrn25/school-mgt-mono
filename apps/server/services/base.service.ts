@@ -1,8 +1,11 @@
 import { PrismaClient } from "database";
-const prisma = new PrismaClient();
+import CustomError from "../utils/customError.utils";
+const prisma = new PrismaClient({
+    errorFormat: "pretty",
+});
 export default class BaseService {
     public db: any;
-    private prisma: any;
+    public prisma: any;
 
     constructor(private model_name: any) {
         this.prisma = prisma;
@@ -13,14 +16,17 @@ export default class BaseService {
         return await this.db.findMany({});
     }
     async getById(id: string) {
-        return await this.db.findUnique({
+        const result = await this.db.findUnique({
             where: {
                 id: id,
             },
         });
+        if (!result) throw new CustomError("Could not find !!", 404);
+        return result;
     }
 
     async deleteById(id: string) {
+        await this.getById(id);
         return await this.db.delete({
             where: {
                 id,
@@ -34,21 +40,11 @@ export default class BaseService {
             data: data,
         });
     }
-
-    async register(data: any) {
-        const { student, registration_data } = data || {};
+    async updateById(data: any, id: string) {
+        await this.getById(id);
         return await this.db.create({
-            data: {
-                ...student,
-                registration: {
-                    create: {
-                        data: registration_data,
-                    },
-                },
-            },
-            include: {
-                registration: true,
-            },
+            where: { id },
+            data: data,
         });
     }
 }

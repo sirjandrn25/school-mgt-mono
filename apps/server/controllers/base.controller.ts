@@ -1,15 +1,16 @@
 import type { Request, Response } from "express";
 
 export default class BaseController {
-    private service: any;
+    public service: any;
 
     constructor(service: any) {
         this.service = service;
     }
 
     async list(req: Request, res: Response) {
-        const result = await this.service.list();
-        res.status(200).send(result);
+        console.log(this.service);
+        // const result = await this.service.list();
+        res.status(200).send({});
     }
     async getById(req: Request, res: Response) {
         const { id } = req.params;

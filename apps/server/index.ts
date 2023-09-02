@@ -1,7 +1,10 @@
 const express = require("express");
 const dotenv = require("dotenv");
+import type { Request, Response } from "express";
 
+import errorHandler from "./controllers/error.controller";
 import ModuleRouter from "./modules/route";
+import CustomError from "./utils/customError.utils";
 const bodyParser = require("body-parser");
 const cors = require("cors");
 dotenv.config();
@@ -23,6 +26,14 @@ app.use(bodyParser.json());
 const port = process.env.PORT ?? 8000;
 
 app.use("/", ModuleRouter);
+
+app.use("*", (req: Request, res: Response, next: Function) => {
+    const error: any = new CustomError("not found !!", 404);
+
+    next(error);
+});
+
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(

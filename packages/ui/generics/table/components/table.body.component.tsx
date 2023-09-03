@@ -1,6 +1,7 @@
 import { cn } from "tailwind-config";
 import TableColumnUtils from "../utils/table.column.utils";
 import { Fragment, useCallback } from "react";
+import { useNavigation } from "../../../hooks";
 
 const TableBody = ({
     data = [],
@@ -9,6 +10,7 @@ const TableBody = ({
     enableNumbering,
     filterState,
 }: any) => {
+    const { navigation } = useNavigation();
     const renderTableRow = useCallback(
         ({ row, idx }: any) => {
             return (
@@ -28,7 +30,11 @@ const TableBody = ({
                                 className={cn("px-6  py-4", column?.className)}
                                 key={index}
                             >
-                                {TableColumnUtils.parseColumn(column, row)}
+                                {TableColumnUtils.parseColumn(
+                                    column,
+                                    row,
+                                    navigation
+                                )}
                             </td>
                         );
                     })}
@@ -42,7 +48,14 @@ const TableBody = ({
                 </tr>
             );
         },
-        [columns]
+        [
+            columns,
+            enableNumbering,
+            filterState?.limit,
+            filterState.page,
+            navigation,
+            rowActions.length,
+        ]
     );
     return (
         <tbody className="border-t border-gray-100 divide-y divide-gray-100">

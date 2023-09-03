@@ -25,7 +25,7 @@ export default class TableColumnUtils {
                     onClick={() => {
                         navigation(TableColumnUtils.parseToUrl(data, column));
                     }}
-                    className="text-info hover:underline "
+                    className="cursor-pointer text-info hover:underline"
                 >
                     {value}
                 </div>

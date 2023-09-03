@@ -1,7 +1,7 @@
-export const parseSelectBoxValue = (
+export const parseSelectBoxOptions = (
     data: any,
-    label: any = "",
-    value: any = ""
+    value: any = "",
+    label: any = ""
 ) => {
     return data.map((item: any, index: any) => {
         if (typeof item === "string") {

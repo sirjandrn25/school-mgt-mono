@@ -5,3 +5,4 @@ export * from "./select-box";
 export * from "./loading";
 export * from "./dropdown-menu";
 export * from "./dateFormat";
+export * from "./modal";

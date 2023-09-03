@@ -59,9 +59,7 @@ export const SelectBox = ({
                     ref={valueRef}
                     is_clearable={isClearableProp}
                     className={valueClassName}
-                    onClear={() => {
-                        console.log("click");
-                    }}
+                    onClear={() => {}}
                 >
                     <SelectValue
                         defaultValue={String(defaultValue ?? value)}

@@ -4,3 +4,4 @@ export * from "./checkbox";
 export * from "./select-box";
 export * from "./loading";
 export * from "./dropdown-menu";
+export * from "./dateFormat";

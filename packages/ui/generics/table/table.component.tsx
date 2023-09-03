@@ -1,8 +1,5 @@
 "use client";
-import { ObjectUtils } from "helper-utils";
-import { Link } from "lucide-react";
 import { useMemo, useState } from "react";
-import { IsFunction, IsUndefined } from "../../utils/common.utils";
 import Pagination from "./components/pagination.component";
 import TableBody from "./components/table.body.component";
 import TableHeader from "./components/table.header.component";
@@ -94,42 +91,6 @@ export const Table = ({
                     : undefined,
             };
         });
-    };
-
-    const parseToUrl = (item: any, column: any) => {
-        if (IsFunction(column.url)) return column.url(item);
-        return column?.url;
-    };
-
-    const parseColumnItem = (item: any, column: any) => {
-        const value = ObjectUtils.accessNestedValue(item, column.key);
-
-        if (IsFunction(column?.renderValue)) return column?.renderValue(item);
-        //parse url value
-        let columnValue: any;
-        if (IsUndefined(value)) return "-";
-        switch (column.type) {
-            case "currency":
-                // columnValue = FormatCurrency(value || 0);
-                break;
-            case "date":
-                // columnValue = FormatDisplayDate(value);
-                break;
-            case "stock":
-                break;
-
-            default:
-                columnValue = value;
-        }
-
-        if (column?.url) {
-            return (
-                <div className="text-info hover:underline">
-                    <Link href={parseToUrl(item, column)}>{columnValue}</Link>
-                </div>
-            );
-        }
-        return columnValue;
     };
 
     return (

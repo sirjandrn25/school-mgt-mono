@@ -1,5 +1,6 @@
 import { PrismaClient } from "database";
 import CustomError from "../utils/customError.utils";
+import { DictionaryType } from "core";
 const prisma = new PrismaClient({
     errorFormat: "pretty",
 });
@@ -15,10 +16,13 @@ export default class BaseService {
     async list() {
         return await this.db.findMany({});
     }
-    async getById(id: string) {
+    async getById(id: string, include: DictionaryType = {}) {
         const result = await this.db.findUnique({
             where: {
                 id: id,
+            },
+            include: {
+                ...include,
             },
         });
         if (!result) throw new CustomError("Could not find !!", 404);

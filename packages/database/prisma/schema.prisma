@@ -37,13 +37,14 @@ model Course {
 }
 
 model Grade {
-    id          String    @id @default(cuid())
+    id          String      @id @default(cuid())
     name        String
     description String?
     course_id   String
-    course      Course    @relation(fields: [course_id], onDelete: Cascade, references: [id])
+    course      Course      @relation(fields: [course_id], onDelete: Cascade, references: [id])
     priority    Int
-    created_at  DateTime? @default(now())
+    created_at  DateTime?   @default(now())
+    admission   Admission[]
 
     @@unique([course_id, name])
 }
@@ -57,6 +58,7 @@ model Student {
     father_name  String?
     photo        String?
     registration Registration[]
+    admission    Admission[]
 }
 
 model Registration {
@@ -69,4 +71,15 @@ model Registration {
     created_at      DateTime? @default(now())
 
     @@unique([course_id, student_id])
+}
+
+model Admission {
+    id         String    @id @default(cuid())
+    student_id String
+    student    Student   @relation(fields: [student_id], references: [id])
+    grade_id   String
+    grade      Grade     @relation(fields: [grade_id], references: [id])
+    created_at DateTime? @default(now())
+
+    @@unique([student_id, grade_id])
 }

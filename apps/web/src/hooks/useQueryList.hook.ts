@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 type queryListType = {
-    end_point: string;
+    end_point: (typeof api_routes)[number];
     filterParams?: DictionaryType;
     networkDisabled?: boolean;
     isGetMethod?: boolean;

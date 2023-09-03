@@ -133,7 +133,7 @@ export const Table = ({
     };
 
     return (
-        <div className={`overflow-hidden rounded-lg border   m-5`}>
+        <div className={`overflow-hidden rounded-lg border   `}>
             <table className="table w-full text-sm text-left text-gray-500 border-collapse">
                 <TableHeader {...{ enableNumbering, columns, rowActions }} />
                 <TableBody

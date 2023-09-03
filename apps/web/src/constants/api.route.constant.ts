@@ -1,1 +1,1 @@
-const api_routes = ["courses"];
+const api_routes = ["courses", "students"];

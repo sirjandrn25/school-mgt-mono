@@ -14,7 +14,7 @@ export const getById = asyncErrorHandler(
     async (req: Request, res: Response) => {
         const { id } = req.params;
         const result = await service.getById(id);
-        console.log(result);
+
         res.status(200).send(result);
     }
 );

@@ -1,3 +1,4 @@
+"use client";
 import Container from "@components/container.component";
 import useQueryList from "@hooks/useQueryList.hook";
 import { Plus } from "lucide-react";
@@ -34,7 +35,7 @@ const GenericTableList = ({
                     return (
                         <Button
                             {...action}
-                            key={action?.key}
+                            key={action.key}
                             onClick={action?.action}
                         >
                             {action?.type === "create" && <Plus />}

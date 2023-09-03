@@ -57,6 +57,7 @@ model Student {
     mother_name  String?
     father_name  String?
     photo        String?
+    address      String?
     registration Registration[]
     admission    Admission[]
 }

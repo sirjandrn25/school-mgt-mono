@@ -34,13 +34,7 @@ const Home = () => {
                     },
                 ]}
             />
-            <Button
-                onClick={(next) => {
-                    console.log("cursor");
-                }}
-                loading
-                defaultWidth
-            >
+            <Button onClick={(next) => {}} loading defaultWidth>
                 This
             </Button>{" "}
             <div className="text-blue-500">Text hero</div>

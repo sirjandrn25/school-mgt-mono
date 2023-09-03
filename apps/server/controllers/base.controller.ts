@@ -8,7 +8,6 @@ export default class BaseController {
     }
 
     async list(req: Request, res: Response) {
-        console.log(this.service);
         // const result = await this.service.list();
         res.status(200).send({});
     }

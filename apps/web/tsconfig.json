@@ -11,6 +11,12 @@
       "@constants/*": ["./src/constants/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "../../packages/ui/hooks/useFormBuilder.hook.tsx"
+  ],
   "exclude": ["node_modules"]
 }

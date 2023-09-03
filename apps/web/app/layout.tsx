@@ -1,5 +1,6 @@
 "use client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ModalUtil, ModalWrapper } from "ui";
 import "../Styles/global.css";
 import { AuthProvider } from "../src/context/auth.context";
 
@@ -16,6 +17,13 @@ const RootLayout = ({ children }: any) => {
                     </body>
                 </html>
             </AuthProvider>
+            <ModalWrapper
+                ref={(ref) => {
+                    if (ref) {
+                        ModalUtil.register(ref);
+                    }
+                }}
+            />
         </QueryClientProvider>
     );
 };

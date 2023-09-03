@@ -10,6 +10,7 @@ const commonStudentSchema = {
     mother_name: z.string().optional(),
     father_name: z.string().optional(),
     photo: z.string().optional(),
+    address: z.string().optional(),
 };
 export const studentSchema = z.object({
     ...commonStudentSchema,

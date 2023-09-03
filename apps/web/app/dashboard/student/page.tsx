@@ -1,7 +1,3 @@
-import React from "react";
+import studentListModule from "@modules/student/student.list.module";
 
-const Student = () => {
-    return <div>Students</div>;
-};
-
-export default Student;
+export default studentListModule;

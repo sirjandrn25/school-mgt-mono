@@ -15,7 +15,7 @@ export const ModalContainer = ({ className, title, children }: any) => {
 
 export const ModalBody = ({ className, children }: any) => {
     return (
-        <div className={cn("flex p-4 bg-base-100 w-full", className)}>
+        <div className={cn("flex p-6 bg-base-100 w-full", className)}>
             {children}
         </div>
     );

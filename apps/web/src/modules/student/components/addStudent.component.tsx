@@ -20,11 +20,10 @@ const AddStudent = ({ data = {}, callback = EmptyFunction }: any) => {
     const onSubmit: formBuilderSubmitType = useCallback(
         async (values) => {
             const { success } = await ApiService.postRequest(
-                "/students",
+                "students/register",
                 isEdit ? { ...values, id: data?.id } : values
             );
-            if (!success) {
-            }
+            if (!success) return;
             callback();
             ModalUtil.close();
         },
@@ -40,11 +39,41 @@ const AddStudent = ({ data = {}, callback = EmptyFunction }: any) => {
             {
                 label: "Father Name",
                 name: "father_name",
-                required: true,
+                // required: true,
             },
             {
                 label: "Mother Name",
                 name: "mother_name",
+                // required: true,
+            },
+
+            {
+                label: "Birth Date",
+                name: "birth_date",
+                required: true,
+            },
+            {
+                label: "Gender",
+                name: "gender",
+                required: true,
+                type: "select",
+                options: [
+                    {
+                        label: "Male",
+                        value: "M",
+                    },
+                    {
+                        label: "Female",
+                        value: "F",
+                    },
+                ],
+            },
+            {
+                label: "Course",
+                name: "course_id",
+                options: parseSelectBoxOptions(courses, "id", "name"),
+                type: "select",
+                disabled: isEdit,
                 required: true,
             },
             {
@@ -52,19 +81,7 @@ const AddStudent = ({ data = {}, callback = EmptyFunction }: any) => {
                 name: "address",
                 type: "textarea",
                 required: true,
-            },
-            {
-                label: "Address",
-                name: "address",
-                required: true,
-            },
-            {
-                label: "Course",
-                name: "course",
-                options: parseSelectBoxOptions(courses, "id", "name"),
-                type: "select",
-                disabled: isEdit,
-                required: true,
+                className: "col-span-2",
             },
         ],
         layout: "two",

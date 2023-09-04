@@ -4,7 +4,13 @@ import { ModalUtil, ModalWrapper } from "ui";
 import "../Styles/global.css";
 import { AuthProvider } from "../src/context/auth.context";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            refetchOnWindowFocus: false, // default: true
+        },
+    },
+});
 
 const RootLayout = ({ children }: any) => {
     return (

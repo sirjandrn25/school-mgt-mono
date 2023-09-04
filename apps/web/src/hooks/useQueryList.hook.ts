@@ -1,6 +1,6 @@
 import ApiService from "@utils/api.service.utils";
 import { DictionaryType } from "core";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 type queryListType = {
@@ -20,7 +20,7 @@ const useQueryList = ({
         limit: 20,
         page: 1,
     });
-    const fetchList = async () => {
+    const fetchList = useCallback(async () => {
         if (isGetMethod) {
             const { success, response } = await ApiService.getRequest(
                 end_point
@@ -34,7 +34,7 @@ const useQueryList = ({
         });
         if (success) return response;
         return [];
-    };
+    }, [end_point, filterParams, isGetMethod, pagination]);
     const {
         data: response = {},
         isLoading,

@@ -21,6 +21,7 @@ const FormBuilder = ({
         <form
             onSubmit={handleSubmit}
             className={cn("flex flex-col gap-4 w-full", className)}
+            method="post"
         >
             <LayoutWrapper {...{ layout }}>
                 {fields.map((field) => {

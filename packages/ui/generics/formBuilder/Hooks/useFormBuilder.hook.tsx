@@ -3,13 +3,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DictionaryType } from "core";
 import { ArrayUtils } from "helper-utils";
-import { useCallback, useState } from "react";
+import { FormEvent, useCallback, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useUpdateEffect } from "react-use";
-import { InputField, SelectBox } from "ui";
+import { InputField, SelectBox, TextareaInput } from "ui";
 import { z } from "zod";
-import { FormBuilderInterface, SchemaType } from "../formBuilder.types";
 import { EmptyFunction } from "../../../utils/common.utils";
+import { FormBuilderInterface, SchemaType } from "../formBuilder.types";
 
 //single validation object get
 const getZodValidation = (type: any, displayLabel: string, validation: any) => {
@@ -56,7 +56,7 @@ const getZodValidation = (type: any, displayLabel: string, validation: any) => {
                 return prev?.min(value);
             case "maxLength":
                 return prev?.max(value);
-            case "isRequired":
+            case "required":
                 if (["text", "textarea"].includes(type))
                     return prev?.nonempty();
                 return prev;
@@ -74,21 +74,15 @@ const getZodValidation = (type: any, displayLabel: string, validation: any) => {
 const getZodSchema = (fields: any) => {
     let schema: any = {};
     for (let field of fields) {
-        const {
-            name,
-            label: displayLabel,
-            isRequired,
-            type,
-            validation,
-        } = field;
+        const { name, label: displayLabel, required, type, validation } = field;
 
-        if (!isRequired && !validation) {
+        if (!required && !validation) {
             // schema[name] = Joi.string().optional().allow(null).empty("");
             continue;
         }
         schema[name] = getZodValidation(type, displayLabel, {
             ...validation,
-            isRequired: isRequired,
+            required: required,
         });
     }
 
@@ -105,6 +99,7 @@ const useFormBuilder = ({
         control,
         formState,
         getValues,
+
         reset,
     } = useForm({
         resolver: zodResolver(getZodSchema(fields)),
@@ -164,7 +159,8 @@ const useFormBuilder = ({
         async (values: DictionaryType) => {
             if (isSubmitting) return;
             setIsSubmitting(true);
-            const result = await onSubmit(values);
+            const result = await onSubmit({ ...getValues(), ...values });
+            setIsSubmitting(false);
         }
     );
 
@@ -180,8 +176,7 @@ const FormElement = ({ type, field, ...rest }: any) => {
     switch (type) {
         // case "currency_input":
         //   return <CurrencyInput {...field} {...rest} />
-        case "stock_input":
-            return <InputField {...field} {...rest} type="number" />;
+
         // case "async_select":
         //   return (
         //     <AsyncSelectBox
@@ -197,6 +192,10 @@ const FormElement = ({ type, field, ...rest }: any) => {
                     onChange={(value) => field.onChange(value?.value)}
                     {...rest}
                 />
+            );
+        case "textarea":
+            return (
+                <TextareaInput {...field} type={type} {...field} {...rest} />
             );
         // case "files":
         //   return (

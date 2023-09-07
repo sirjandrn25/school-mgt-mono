@@ -62,7 +62,7 @@ type submitOtherProps = {
 };
 export type formBuilderSubmitType = (
     data: DictionaryType,
-    options?: submitOtherProps
+    options: submitOtherProps
 ) => void;
 export interface FormBuilderInterface {
     fields: SchemaType[];

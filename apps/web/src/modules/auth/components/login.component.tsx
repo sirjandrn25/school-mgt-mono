@@ -1,42 +1,62 @@
 "use client";
-import React, { useState } from "react";
-import { Button, InputField } from "ui";
-import ApiService from "../../../utils/api.service.utils";
 import { DictionaryType } from "core";
-import { EmptyFunction } from "ui/utils/common.utils";
-import { AuthStorageUtils } from "../../../utils/storage.utils";
-import { useAuthContext } from "../../../context/auth.context";
 import { useRouter } from "next/navigation";
+import { FormBuilderInterface, formBuilderSubmitType } from "ui";
+import FormBuilder from "ui/generics/formBuilder/formBuilder";
+import Toast from "ui/utils/toast.utils";
+import { useAuthContext } from "../../../context/auth.context";
+import ApiService from "../../../utils/api.service.utils";
+import { AuthStorageUtils } from "../../../utils/storage.utils";
 
 const Login = () => {
-    const [data, setData] = useState<DictionaryType>();
     const { setIsLoggedIn } = useAuthContext();
     const router = useRouter();
-    const handleLogin = async (next = EmptyFunction) => {
+    const handleLogin: formBuilderSubmitType = async (
+        values: DictionaryType,
+        { setError }
+    ) => {
         const { success, response } = await ApiService.postRequest(
             "auth/login",
-            data
+            values
         );
         if (success) {
             AuthStorageUtils.setInfo(response);
             setIsLoggedIn(true);
             return router.push("/dashboard");
         }
-
-        next();
+        if (response?.message)
+            return Toast.error({
+                message: response.message,
+            });
+        console.log(response);
+        setError(response);
     };
-    const handleChange = (key: string, value: string) => {
-        setData((prev) => {
-            return {
-                ...prev,
-                [key]: value,
-            };
-        });
+
+    const form_builder_props: FormBuilderInterface = {
+        fields: [
+            {
+                name: "email",
+                label: "Email",
+                required: true,
+                type: "email",
+            },
+            {
+                name: "password",
+                label: "Password",
+                required: true,
+                type: "password",
+            },
+        ],
+        onSubmit: handleLogin,
     };
 
     return (
         <div className="flex items-center justify-center flex-1 h-screen">
-            <div className="flex flex-col shadow gap-4 p-4 border rounded w-[400px]">
+            <FormBuilder
+                className="shadow  p-4 border rounded w-[400px]"
+                {...form_builder_props}
+            />
+            {/* <div className="flex flex-col shadow gap-4 p-4 border rounded w-[400px]">
                 <InputField
                     label="Email"
                     placeholder="Enter email "
@@ -54,7 +74,7 @@ const Login = () => {
                 <Button onClick={handleLogin} progress appearance="neutral">
                     Login
                 </Button>
-            </div>
+            </div> */}
         </div>
     );
 };

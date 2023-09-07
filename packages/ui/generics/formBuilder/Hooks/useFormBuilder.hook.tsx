@@ -99,7 +99,7 @@ const useFormBuilder = ({
         control,
         formState,
         getValues,
-
+        setError: setReactHookError,
         reset,
     } = useForm({
         resolver: zodResolver(getZodSchema(fields)),
@@ -111,6 +111,24 @@ const useFormBuilder = ({
         reset(initValues);
     }, [initValues]);
     const { errors } = formState;
+
+    const handleErrorChange = useCallback(
+        (name: string, message: string) => {
+            setReactHookError(name, {
+                type: "manual",
+                message: message,
+            });
+        },
+        [setReactHookError]
+    );
+
+    const setError = useCallback(
+        (data: DictionaryType) => {
+            for (let [key, value] of Object.entries(data))
+                handleErrorChange(key, value);
+        },
+        [handleErrorChange]
+    );
 
     const sanitizeError = (() => {
         let tempError: any = {};
@@ -159,7 +177,12 @@ const useFormBuilder = ({
         async (values: DictionaryType) => {
             if (isSubmitting) return;
             setIsSubmitting(true);
-            const result = await onSubmit({ ...getValues(), ...values });
+            const result = await onSubmit(
+                { ...getValues(), ...values },
+                {
+                    setError,
+                }
+            );
             setIsSubmitting(false);
         }
     );

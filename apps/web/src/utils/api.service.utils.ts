@@ -44,7 +44,7 @@ const apiRequestHandle = async (
     } catch (error) {
         return {
             success: false,
-            response: error?.message,
+            response: error?.response?.data,
         };
     }
 };

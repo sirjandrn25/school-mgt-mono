@@ -41,6 +41,7 @@ const LayoutWrapper = ({ layout, children }: any) => {
     return (
         <div
             className={cn(
+                "space-y-4",
                 {
                     "grid grid-cols-1": layout === "one",
                     "grid grid-cols-2": layout === "two",

@@ -1,6 +1,7 @@
 import { DictionaryType } from "core";
 import { AuthStorageUtils } from "./storage.utils";
 import axios from "axios";
+import Toast from "ui/utils/toast.utils";
 
 const getAccessToken = (type = "Bearer") => {
     const token = AuthStorageUtils.getAccessToken();
@@ -42,9 +43,13 @@ const apiRequestHandle = async (
             response: response.data,
         };
     } catch (error) {
+        if (error?.code == "ERR_NETWORK")
+            Toast.error({
+                message: "Network error",
+            });
         return {
             success: false,
-            response: error?.response?.data,
+            response: error?.response?.data || error?.message,
         };
     }
 };

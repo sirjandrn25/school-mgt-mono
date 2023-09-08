@@ -2,6 +2,7 @@ import { cn } from "tailwind-config";
 import { Button } from "../../components";
 import useFormBuilder from "./Hooks/useFormBuilder.hook";
 import { FormBuilderInterface } from "./formBuilder.types";
+import { Fragment } from "react";
 
 const FormBuilder = ({
     fields,
@@ -25,7 +26,11 @@ const FormBuilder = ({
         >
             <LayoutWrapper {...{ layout }}>
                 {fields.map((field) => {
-                    return renderFormField(field?.name, undefined, field);
+                    return (
+                        <Fragment key={field?.name}>
+                            {renderFormField(field?.name, undefined, field)}
+                        </Fragment>
+                    );
                 })}
             </LayoutWrapper>
             {children ? (
@@ -41,7 +46,7 @@ const LayoutWrapper = ({ layout, children }: any) => {
     return (
         <div
             className={cn(
-                "space-y-4",
+                "",
                 {
                     "grid grid-cols-1": layout === "one",
                     "grid grid-cols-2": layout === "two",

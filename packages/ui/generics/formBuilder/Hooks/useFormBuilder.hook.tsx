@@ -3,13 +3,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DictionaryType } from "core";
 import { ArrayUtils } from "helper-utils";
-import { FormEvent, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useUpdateEffect } from "react-use";
-import { InputField, SelectBox, TextareaInput } from "ui";
 import { z } from "zod";
 import { EmptyFunction } from "../../../utils/common.utils";
 import { FormBuilderInterface, SchemaType } from "../formBuilder.types";
+import { FormElements } from "../components/formElements.component";
 
 //single validation object get
 const getZodValidation = (type: any, displayLabel: string, validation: any) => {
@@ -154,9 +154,11 @@ const useFormBuilder = ({
                     {...{ name, control }}
                     render={({ field }) => {
                         return (
-                            <FormElement
-                                {...{ type, field }}
+                            <FormElements
                                 {...{
+                                    type,
+                                    field,
+
                                     error: sanitizeError[name],
                                     name,
                                     value: getValues(name),
@@ -193,48 +195,6 @@ const useFormBuilder = ({
         handleResetForm,
         isSubmitting,
     };
-};
-
-const FormElement = ({ type, field, ...rest }: any) => {
-    switch (type) {
-        // case "currency_input":
-        //   return <CurrencyInput {...field} {...rest} />
-
-        // case "async_select":
-        //   return (
-        //     <AsyncSelectBox
-        //       {...field}
-        //       onChange={(value) => field.onChange(value?.value)}
-        //       {...rest}
-        //     />
-        //   )
-        case "select":
-            return (
-                <SelectBox
-                    {...field}
-                    onChange={(value) => field.onChange(value?.value)}
-                    {...rest}
-                />
-            );
-        case "textarea":
-            return (
-                <TextareaInput {...field} type={type} {...field} {...rest} />
-            );
-        // case "files":
-        //   return (
-        //     <FileUploaderInput
-        //       {...field}
-        //       {...rest}
-        //       files={rest?.value}
-        //       onChange={(files) => {
-        //         field.onChange(files)
-        //       }}
-        //     />
-        //   )
-
-        default:
-            return <InputField type={type} {...field} {...rest} />;
-    }
 };
 
 export default useFormBuilder;

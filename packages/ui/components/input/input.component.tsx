@@ -73,6 +73,7 @@ export const InputField = ({
 
             <InputComponent
                 handleChange={handleChange}
+                error={error}
                 value={value}
                 placeholder={placeholder}
                 handleBlur={handleBlur}
@@ -84,7 +85,7 @@ export const InputField = ({
                 {...rest}
             />
             {!error && messageComponent}
-            {error && <ErrorMessage {...{ error }} />}
+            {!!error && <ErrorMessage {...{ error }} />}
         </div>
     );
 };
@@ -99,6 +100,7 @@ const InputComponent = ({
     handleBlur,
     prefix,
     suffix,
+    error,
     ...rest
 }: any) => {
     return (
@@ -107,9 +109,13 @@ const InputComponent = ({
                 value={inputValue}
                 type={type}
                 placeholder={placeholder}
-                className={`input px-3  focus:outline-none h-10 text-sm   input-bordered   w-full  ${inputClassName} ${
-                    prefix && "pl-8"
-                } ${suffix && "pr-8"}`}
+                className={cn(
+                    `input px-3  focus:outline-none h-10 text-sm   input-bordered   w-full`,
+                    prefix && "pl-8",
+                    suffix && "pr-8",
+                    !!error && "input-error",
+                    inputClassName
+                )}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={disabled}

@@ -18,6 +18,7 @@ const errorHandler = (
 export const asyncErrorHandler = (func: Function) => {
     return (req: Request, res: Response, next: Function) =>
         func(req, res, next).catch((error: any) => {
+            console.log(error);
             if (error?.code === "P2002") {
                 const target = error?.meta?.target[0];
 

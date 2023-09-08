@@ -1,5 +1,11 @@
 import { forwardRef } from "react";
-import { SelectBox, TextareaInput, InputField } from "../../../components";
+import {
+    SelectBox,
+    TextareaInput,
+    InputField,
+    DatePicker,
+    DatePickerInput,
+} from "../../../components";
 
 export const FormElements = forwardRef(
     ({ type, field, ...rest }: any, ref: any) => {
@@ -15,6 +21,15 @@ export const FormElements = forwardRef(
             //       {...rest}
             //     />
             //   )
+            case "date":
+                return (
+                    <DatePickerInput
+                        {...field}
+                        onChange={(value: any) => field.onChange(value?.value)}
+                        {...rest}
+                        ref={ref}
+                    />
+                );
             case "select":
                 return (
                     <SelectBox

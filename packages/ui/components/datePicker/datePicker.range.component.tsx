@@ -18,7 +18,7 @@ interface DateRangePicker {
     className?: string;
     onChange?: (value: DateRange | undefined) => void;
 }
-export default function DateRangePicker({
+export function DatePickerRange({
     className,
     value,
     defaultValue,

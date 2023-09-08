@@ -18,7 +18,7 @@ export const registration = asyncErrorHandler(
         const student = await service.register({
             student: {
                 ...rest,
-                birth_date: new Date(rest.birth_date),
+                birth_date: new Date(rest?.birth_date),
             },
             registration_data: {
                 course_id,

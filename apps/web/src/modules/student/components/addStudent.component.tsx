@@ -11,6 +11,7 @@ import {
 } from "ui";
 import FormBuilder from "ui/generics/formBuilder/formBuilder";
 import { EmptyFunction } from "ui/utils/common.utils";
+import Toast from "ui/utils/toast.utils";
 
 const AddStudent = ({ data = {}, callback = EmptyFunction }: any) => {
     const isEdit = !!data?.id;
@@ -18,12 +19,19 @@ const AddStudent = ({ data = {}, callback = EmptyFunction }: any) => {
         end_point: "courses",
     });
     const onSubmit: formBuilderSubmitType = useCallback(
-        async (values) => {
-            const { success } = await ApiService.postRequest(
+        async (values, { setError }) => {
+            const { success, response } = await ApiService.postRequest(
                 "students/register",
                 isEdit ? { ...values, id: data?.id } : values
             );
-            if (!success) return;
+            if (!success) {
+                if (response?.message)
+                    return Toast.error({
+                        message: response?.message,
+                    });
+                setError(response);
+                return;
+            }
             callback();
             ModalUtil.close();
         },
@@ -51,6 +59,7 @@ const AddStudent = ({ data = {}, callback = EmptyFunction }: any) => {
                 label: "Birth Date",
                 name: "birth_date",
                 required: true,
+                type: "date",
             },
             {
                 label: "Gender",

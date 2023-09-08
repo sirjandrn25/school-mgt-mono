@@ -7,6 +7,7 @@ import { DictionaryType } from "core";
 import React from "react";
 import { ModalUtil, formatDisplayDate } from "ui";
 import AddStudent from "./components/addStudent.component";
+import { GenderEnum } from "@constants/preference.constant";
 
 const studentListModule = () => {
     const openForm = () => {
@@ -38,6 +39,18 @@ const studentListModule = () => {
             {
                 name: "Mother Name",
                 key: "mother_name",
+            },
+            {
+                name: "Birth Date",
+                key: "birth_date",
+                type: "date",
+            },
+            {
+                name: "Gender",
+                key: "gender",
+                renderValue: (item: DictionaryType) => {
+                    return <div>{GenderEnum[item?.gender]}</div>;
+                },
             },
             {
                 name: "Address",

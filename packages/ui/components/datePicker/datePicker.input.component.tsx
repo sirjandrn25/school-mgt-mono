@@ -7,30 +7,31 @@ import { CalendarIcon } from "lucide-react";
 import { Popover } from "../popover/popover";
 import { cn } from "tailwind-config";
 import { Calendar } from "../calendar/calendar.component";
+import { InputField } from "../input";
 
-export const DatePicker = ({
+export const DatePickerInput = ({
     onChange,
     value,
     minDate,
     maxDate,
     className,
+    ...rest
 }: any) => {
     const [date, setDate] = useState<Date>(value);
     return (
         <Popover
             contentClassName="w-full"
             content={
-                <Button
-                    outline
+                <InputField
+                    {...rest}
+                    suffix={<CalendarIcon className="w-4 h-4 mr-2" />}
                     className={cn(
                         "min-w-[200px] justify-start text-left font-normal",
                         !date && "text-muted-foreground",
                         className
                     )}
-                >
-                    <CalendarIcon className="w-4 h-4 mr-2" />
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
-                </Button>
+                    value={date ? format(date, "PPP") : undefined}
+                />
             }
         >
             <Calendar

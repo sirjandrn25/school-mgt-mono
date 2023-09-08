@@ -26,7 +26,8 @@ export type SchemaInputType = SchemaBaseType & {
         | "textarea"
         | "currency_input"
         | "stock_input"
-        | "creatable_select";
+        | "creatable_select"
+        | "date";
 };
 
 export type FileSchemaType = SchemaBaseType & {

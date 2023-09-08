@@ -5,7 +5,7 @@ const commonStudentSchema = {
     full_name: z.string({
         required_error: "full name is required !!",
     }),
-    birth_date: z.string().datetime(),
+    birth_date: z.string(),
     gender: z.enum(["M", "F"]),
     mother_name: z.string().optional(),
     father_name: z.string().optional(),

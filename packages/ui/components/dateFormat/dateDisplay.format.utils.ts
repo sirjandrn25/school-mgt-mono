@@ -4,6 +4,8 @@ import {
     DISPLAY_DATE_TIME_FORMAT,
 } from "./dateFormat.constant";
 export const formatDisplayDate = (date: Date, isTimeShow?: boolean) => {
+    const dateValue = GetDateValue(date);
+    if (!dateValue) return;
     return format(
         GetDateValue(date),
         isTimeShow ? DISPLAY_DATE_TIME_FORMAT : DISPLAY_DATE_FORMAT

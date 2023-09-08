@@ -2,6 +2,7 @@ import { DictionaryType } from "core";
 import { TableColumnInterface } from "../table.types";
 import { FunctionUtils, ObjectUtils } from "helper-utils";
 import { EmptyFunction } from "../../../utils/common.utils";
+import { formatDisplayDate } from "../../../components";
 
 export default class TableColumnUtils {
     static parseToUrl = (item: any, column: any) => {
@@ -34,7 +35,7 @@ export default class TableColumnUtils {
 
         switch (column.type) {
             case "date":
-                return value; // format date value
+                return formatDisplayDate(value); // format date value
             case "currency":
                 return value; // format currency value
 

@@ -35,7 +35,7 @@ const GenericTableList = ({
                     return (
                         <Button
                             {...action}
-                            key={action.key}
+                            key={action.key || action?.name}
                             onClick={action?.action}
                         >
                             {action?.type === "create" && <Plus />}

@@ -3,11 +3,10 @@ import GenericTableList, {
     GenericTableListInterface,
 } from "@components/genericTableList/genericTableList.component";
 import { student } from "@constants/page.route.constant";
-import { DictionaryType } from "core";
-import React from "react";
-import { ModalUtil, formatDisplayDate } from "ui";
-import AddStudent from "./components/addStudent.component";
 import { GenderEnum } from "@constants/preference.constant";
+import { DictionaryType } from "core";
+import { ModalUtil } from "ui";
+import AddStudent from "./components/addStudent.component";
 
 const studentListModule = () => {
     const openForm = () => {
@@ -30,7 +29,7 @@ const studentListModule = () => {
             {
                 name: "Full Name",
                 key: "full_name",
-                url: (item: DictionaryType) => `${student?.detail}${item?.id}`,
+                url: (item: DictionaryType) => `${student?.detail}/${item?.id}`,
             },
             {
                 name: "Father Name",
@@ -59,22 +58,11 @@ const studentListModule = () => {
             {
                 name: "Registration",
                 key: "registration.course.name",
-                renderValue: (item: DictionaryType = {}) => {
-                    const registration = item?.registration[0];
-
-                    return <div>{registration?.course?.name}</div>;
-                },
             },
             {
                 name: "Added On",
                 key: "registration.created_at",
-                renderValue: (item: DictionaryType = {}) => {
-                    const registration = item?.registration[0];
-
-                    return (
-                        <div>{formatDisplayDate(registration?.created_at)}</div>
-                    );
-                },
+                type: "date",
             },
         ],
     };

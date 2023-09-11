@@ -48,11 +48,11 @@ const LayoutWrapper = ({ layout, children }: any) => {
             className={cn(
                 "",
                 {
-                    "grid grid-cols-1": layout === "one",
+                    "grid grid-cols-1 space-y-4": layout === "one",
                     "grid grid-cols-2": layout === "two",
                     "grid grid-cols-3": layout === "three",
                 },
-                " gap-4"
+                " gap-4 "
             )}
         >
             {children}

@@ -1,10 +1,10 @@
 import { forwardRef } from "react";
 import {
+    ApiDateFormat,
+    DatePickerInput,
+    InputField,
     SelectBox,
     TextareaInput,
-    InputField,
-    DatePicker,
-    DatePickerInput,
 } from "../../../components";
 
 export const FormElements = forwardRef(
@@ -25,8 +25,10 @@ export const FormElements = forwardRef(
                 return (
                     <DatePickerInput
                         {...field}
-                        onChange={(value: any) => field.onChange(value?.value)}
                         {...rest}
+                        onChange={(value: any) =>
+                            field.onChange(ApiDateFormat(value))
+                        }
                         ref={ref}
                     />
                 );

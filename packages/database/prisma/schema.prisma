@@ -50,22 +50,22 @@ model Grade {
 }
 
 model Student {
-    id           String         @id @default(cuid())
+    id           String        @id @default(cuid())
     full_name    String
     birth_date   DateTime
-    gender       Gender         @default(M)
+    gender       Gender        @default(M)
     mother_name  String?
     father_name  String?
     photo        String?
     address      String?
-    registration Registration[]
+    registration Registration?
     admission    Admission[]
 }
 
 model Registration {
     id              String    @id @default(cuid())
     register_number String    @unique
-    student_id      String
+    student_id      String    @unique
     student         Student   @relation(fields: [student_id], onDelete: Cascade, references: [id])
     course_id       String
     course          Course    @relation(fields: [course_id], onDelete: Cascade, references: [id])

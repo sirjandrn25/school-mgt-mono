@@ -3,6 +3,7 @@ import BaseService from "../../services/base.service";
 export default class StudentService extends BaseService {
     async register(data: any) {
         const { student, registration_data } = data || {};
+        console.log(student, registration_data);
         return await this.db.create({
             data: {
                 ...student,
